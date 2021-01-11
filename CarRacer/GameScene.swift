@@ -13,6 +13,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     var leftCar = SKSpriteNode()
     var rightCar = SKSpriteNode()
 
+    var lives = 3
+    
     var canMove = false
     var leftToMoveLeft = true
     var rightCarToMoveRight = true
@@ -174,7 +176,16 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             let car = rightCar as! SKSpriteNode
             car.position.y -= 15
         })
+        
+        enumerateChildNodes(withName: "rock", using: { (leftCar, stop) in
+            let car = leftCar as! SKSpriteNode
+            car.position.y -= 15
+        })
 
+        enumerateChildNodes(withName: "tree", using: { (leftCar, stop) in
+            let car = leftCar as! SKSpriteNode
+            car.position.y -= 15
+        })
     }
     
     @objc func removeItems(){
@@ -222,7 +233,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     @objc func leftTraffic(){
         if !stopEverything{
         let leftTrafficItem : SKSpriteNode!
-        let randonNumber = Helper().randomBetweenTwoNumbers(firstNumber: 1, secondNumber: 8)
+        let randonNumber = Helper().randomBetweenTwoNumbers(firstNumber: 9, secondNumber: 16)
         switch Int(randonNumber) {
         case 1...4:
         leftTrafficItem = SKSpriteNode(imageNamed: "orangeCar")
@@ -232,6 +243,12 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             leftTrafficItem = SKSpriteNode(imageNamed: "greenCar")
             leftTrafficItem.name = "greenCar"
             break
+        case 9...12:
+            leftTrafficItem = SKSpriteNode(imageNamed: "rock")
+            leftTrafficItem.name = "rock"
+        case 13...16:
+            leftTrafficItem = SKSpriteNode(imageNamed: "tree")
+            leftTrafficItem.name = "tree"
         default:
             leftTrafficItem = SKSpriteNode(imageNamed: "orangCar")
             leftTrafficItem.name = "orangeCar"
@@ -262,7 +279,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     @objc func rightTraffic(){
         if !stopEverything{
         let rightTrafficItem : SKSpriteNode!
-        let randonNumber = Helper().randomBetweenTwoNumbers(firstNumber: 1, secondNumber: 8)
+        let randonNumber = Helper().randomBetweenTwoNumbers(firstNumber: 1, secondNumber: 16)
         switch Int(randonNumber) {
         case 1...4:
             rightTrafficItem = SKSpriteNode(imageNamed: "orangeCar")
@@ -272,6 +289,12 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             rightTrafficItem = SKSpriteNode(imageNamed: "greenCar")
             rightTrafficItem.name = "greenCar"
             break
+        case 9...12:
+            rightTrafficItem = SKSpriteNode(imageNamed: "rock")
+            rightTrafficItem.name = "rock"
+        case 13...16:
+            rightTrafficItem = SKSpriteNode(imageNamed: "tree")
+            rightTrafficItem.name = "tree"
         default:
             rightTrafficItem = SKSpriteNode(imageNamed: "orangCar")
             rightTrafficItem.name = "orangeCar"

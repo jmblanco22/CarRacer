@@ -12,8 +12,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     var leftCar = SKSpriteNode()
     var rightCar = SKSpriteNode()
-
-    var lives = 3
     
     var canMove = false
     var leftToMoveLeft = true
